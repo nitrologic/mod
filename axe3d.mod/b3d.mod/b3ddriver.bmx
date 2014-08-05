@@ -4,10 +4,21 @@ Strict
 ?win32
 
 Import brl.map
-Import blitz3d.blitz3dsdk
 Import axe3d.axe3D
 
-blitz3d_driver = New TB3DSDKDriver
+Extern "C"
+Function bbTextureBuffer%(handle,frame)
+Function bbFreeTexture%(handle)
+Function bbLockBuffer%(handle)
+Function bbUnlockBuffer%(handle)
+Function bbWritePixelFast(x,y,argb,buffer) 
+Function bbReadPixelFast%(x,y,buffer)
+End Extern
+
+
+Rem
+
+blitz3d_driver = New TB3DDriver
 
 Type TBBTextureLock Extends TTextureLock	
 	Field _owner:TTexture
@@ -43,7 +54,6 @@ Type TBBTextureLock Extends TTextureLock
 		Return bbReadPixelFast(x,y,_buffer)
 	End Method
 End Type
-
 
 Type TBBTexture Extends TTexture
 	Global _all:TMap=New TMap	
@@ -782,7 +792,7 @@ Type TBBEntity Extends TEntity
 End Type
 
 
-Type TB3DSDKDriver Extends TBlitz3DDriver
+Type TB3DDriver Extends TBlitz3DDriver
 
 	Function h(e:TBBEntity)
 		If e Return e._handle
@@ -974,5 +984,8 @@ Type TB3DSDKDriver Extends TBlitz3DDriver
 	End Method
 
 End Type
+
+
+EndRem
 
 ?
