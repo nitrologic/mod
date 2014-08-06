@@ -10,12 +10,12 @@ class Plane;
 class Matrix;
 class Transform;
 
-const float PI=3.14159265359f;		//180 degrees
-const float TWOPI=PI*2.0f;			//360 degrees
-const float HALFPI=PI*.5f;			//90  degrees
-const float QUARTERPI=PI*.25f;		//45  degrees
-const float EPSILON=.000001f;		//small value
-const float INFINITY=10000000.0f;	//big value
+#define PI (3.14159265359f)		//180 degrees
+#define TWOPI (PI*2.0f)			//360 degrees
+#define HALFPI (PI*.5f)			//90  degrees
+#define QUARTERPI (PI*.25f)		//45  degrees
+#define EPSILON (.000001f)		//small value
+#define INFINITY (10000000.0f)	//big value
 
 class Vector{
 public:

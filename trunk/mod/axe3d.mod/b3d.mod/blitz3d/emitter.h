@@ -18,7 +18,7 @@ public:
 	Emitter *getEmitter(){ return this; }
 
 	//Object interface
-	void beginRender( float tween );
+	bool beginRender( float tween );
 
 	//Public interface
 	gxChannel *emitSound( gxSound *sound );

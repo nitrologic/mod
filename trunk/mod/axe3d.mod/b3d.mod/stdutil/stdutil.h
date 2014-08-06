@@ -5,6 +5,7 @@
 #pragma warning(disable:4786)
 
 #include "../config/config.h"
+#include "../debugger/debugger.h"
 
 #include <string>
 #include <iostream>

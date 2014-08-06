@@ -51,6 +51,8 @@ private:
 	void render( Model *m,const RenderContext &rc );
 	void flushTransparent();
 
+	bool boxVis( const Box &src,const Box &dest,int recurs_limit );
+
 };
 
 #endif
