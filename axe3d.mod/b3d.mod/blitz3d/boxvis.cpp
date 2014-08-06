@@ -138,6 +138,7 @@ static int faceVis( const Face &src,const Face &dest,int recurs_limit ){
 	return -1;
 }
 
+
 bool World::boxVis( const Box &src,const Box &dest,int recurs_limit ){
 
 	w=this;

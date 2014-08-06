@@ -10,6 +10,8 @@ Import "b3ddriver.bmx"
 
 ?win32
 
+Import "dx7a/*.h"
+
 Import "blitz3d/animation.cpp"
 Import "blitz3d/animator.cpp"
 Import "blitz3d/bd2model.cpp"
@@ -24,7 +26,6 @@ Import "blitz3d/frustum.cpp"
 Import "blitz3d/geom.cpp"
 Import "blitz3d/light.cpp"
 Import "blitz3d/listener.cpp"
-Import "blitz3d/loader.cpp"
 Import "blitz3d/loader_3ds.cpp"
 Import "blitz3d/loader_b3d.cpp"
 Import "blitz3d/loader_x.cpp"

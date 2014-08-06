@@ -11,7 +11,7 @@ Emitter::Emitter( const Emitter &t ){
 Emitter::~Emitter(){
 }
 
-void Emitter::beginRender( float tween ){
+bool Emitter::beginRender( float tween ){
 	Object::beginRender( tween );
 
 	vel=getRenderTform().v-pos;
@@ -25,6 +25,7 @@ void Emitter::beginRender( float tween ){
 		}
 		chan->set3d( &pos.x,&vel.x );
 	}
+	return true;
 }
 
 gxChannel *Emitter::emitSound( gxSound *sound ){
