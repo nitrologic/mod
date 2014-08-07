@@ -149,22 +149,22 @@ bool bank_destroy(){
 }
 
 void bank_link( void(*rtSym)(const char*,void*) ){
-	rtSym( "%CreateBank%size=0",bbCreateBank );
-	rtSym( "FreeBank%bank",bbFreeBank );
-	rtSym( "%BankSize%bank",bbBankSize );
-	rtSym( "ResizeBank%bank%size",bbResizeBank );
-	rtSym( "CopyBank%src_bank%src_offset%dest_bank%dest_offset%count",bbCopyBank );
-	rtSym( "%PeekByte%bank%offset",bbPeekByte );
-	rtSym( "%PeekShort%bank%offset",bbPeekShort );
-	rtSym( "%PeekInt%bank%offset",bbPeekInt );
-	rtSym( "#PeekFloat%bank%offset",bbPeekFloat );
-	rtSym( "PokeByte%bank%offset%value",bbPokeByte );
-	rtSym( "PokeShort%bank%offset%value",bbPokeShort );
-	rtSym( "PokeInt%bank%offset%value",bbPokeInt );
-	rtSym( "PokeFloat%bank%offset#value",bbPokeFloat );
-	rtSym( "%ReadBytes%bank%file%offset%count",bbReadBytes );
-	rtSym( "%WriteBytes%bank%file%offset%count",bbWriteBytes );
-	rtSym( "%CallDLL$dll_name$func_name%in_bank=0%out_bank=0",bbCallDLL );
+	rtSym( "%CreateBank%size=0",(void*)bbCreateBank );
+	rtSym( "FreeBank%bank",(void*)bbFreeBank );
+	rtSym( "%BankSize%bank",(void*)bbBankSize );
+	rtSym( "ResizeBank%bank%size",(void*)bbResizeBank );
+	rtSym( "CopyBank%src_bank%src_offset%dest_bank%dest_offset%count",(void*)bbCopyBank );
+	rtSym( "%PeekByte%bank%offset",(void*)bbPeekByte );
+	rtSym( "%PeekShort%bank%offset",(void*)bbPeekShort );
+	rtSym( "%PeekInt%bank%offset",(void*)bbPeekInt );
+	rtSym( "#PeekFloat%bank%offset",(void*)bbPeekFloat );
+	rtSym( "PokeByte%bank%offset%value",(void*)bbPokeByte );
+	rtSym( "PokeShort%bank%offset%value",(void*)bbPokeShort );
+	rtSym( "PokeInt%bank%offset%value",(void*)bbPokeInt );
+	rtSym( "PokeFloat%bank%offset#value",(void*)bbPokeFloat );
+	rtSym( "%ReadBytes%bank%file%offset%count",(void*)bbReadBytes );
+	rtSym( "%WriteBytes%bank%file%offset%count",(void*)bbWriteBytes );
+	rtSym( "%CallDLL$dll_name$func_name%in_bank=0%out_bank=0",(void*)bbCallDLL );
 }
 
 

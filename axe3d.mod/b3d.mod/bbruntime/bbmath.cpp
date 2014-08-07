@@ -60,21 +60,21 @@ bool math_destroy(){
 }
 
 void math_link( void (*rtSym)( const char *sym,void *pc ) ){
-	rtSym( "#Sin#degrees",bbSin );
-	rtSym( "#Cos#degrees",bbCos );
-	rtSym( "#Tan#degrees",bbTan );
-	rtSym( "#ASin#float",bbASin );
-	rtSym( "#ACos#float",bbACos );
-	rtSym( "#ATan#float",bbATan );
-	rtSym( "#ATan2#floata#floatb",bbATan2 );
-	rtSym( "#Sqr#float",bbSqr );
-	rtSym( "#Floor#float",bbFloor );
-	rtSym( "#Ceil#float",bbCeil );
-	rtSym( "#Exp#float",bbExp );
-	rtSym( "#Log#float",bbLog );
-	rtSym( "#Log10#float",bbLog10 );
-	rtSym( "#Rnd#from#to=0",bbRnd );
-	rtSym( "%Rand%from%to=1",bbRand );
-	rtSym( "SeedRnd%seed",bbSeedRnd );
-	rtSym( "%RndSeed",bbRndSeed );
+	rtSym( "#Sin#degrees",(void*)bbSin );
+	rtSym( "#Cos#degrees",(void*)bbCos );
+	rtSym( "#Tan#degrees",(void*)bbTan );
+	rtSym( "#ASin#float",(void*)bbASin );
+	rtSym( "#ACos#float",(void*)bbACos );
+	rtSym( "#ATan#float",(void*)bbATan );
+	rtSym( "#ATan2#floata#floatb",(void*)bbATan2 );
+	rtSym( "#Sqr#float",(void*)bbSqr );
+	rtSym( "#Floor#float",(void*)bbFloor );
+	rtSym( "#Ceil#float",(void*)bbCeil );
+	rtSym( "#Exp#float",(void*)bbExp );
+	rtSym( "#Log#float",(void*)bbLog );
+	rtSym( "#Log10#float",(void*)bbLog10 );
+	rtSym( "#Rnd#from#to=0",(void*)bbRnd );
+	rtSym( "%Rand%from%to=1",(void*)bbRand );
+	rtSym( "SeedRnd%seed",(void*)bbSeedRnd );
+	rtSym( "%RndSeed",(void*)bbRndSeed );
 }

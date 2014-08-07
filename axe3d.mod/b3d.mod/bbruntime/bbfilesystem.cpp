@@ -44,7 +44,7 @@ static inline void debugDir( gxDir *d ){
 static bbFile *open( BBStr *f,int n ){
 	string t=*f;
 	filebuf *buf=d_new filebuf();
-	if( buf->open( t.c_str(),n|ios_base::binary ) ){
+	if( buf->open( t.c_str(),(std::ios_base::openmode)n|ios_base::binary ) ){
 		bbFile *f=d_new bbFile( buf );
 		file_set.insert( f );
 		return f;
@@ -148,23 +148,23 @@ bool filesystem_destroy(){
 }
 
 void filesystem_link( void(*rtSym)(const char*,void*) ){
-	rtSym( "%OpenFile$filename",bbOpenFile );
-	rtSym( "%ReadFile$filename",bbReadFile );
-	rtSym( "%WriteFile$filename",bbWriteFile );
-	rtSym( "CloseFile%file_stream",bbCloseFile );
-	rtSym( "%FilePos%file_stream",bbFilePos );
-	rtSym( "%SeekFile%file_stream%pos",bbSeekFile );
+	rtSym( "%OpenFile$filename",(void*)bbOpenFile );
+	rtSym( "%ReadFile$filename",(void*)bbReadFile );
+	rtSym( "%WriteFile$filename",(void*)bbWriteFile );
+	rtSym( "CloseFile%file_stream",(void*)bbCloseFile );
+	rtSym( "%FilePos%file_stream",(void*)bbFilePos );
+	rtSym( "%SeekFile%file_stream%pos",(void*)bbSeekFile );
 
-	rtSym( "%ReadDir$dirname",bbReadDir );
-	rtSym( "CloseDir%dir",bbCloseDir );
-	rtSym( "$NextFile%dir",bbNextFile );
-	rtSym( "$CurrentDir",bbCurrentDir );
-	rtSym( "ChangeDir$dir",bbChangeDir );
-	rtSym( "CreateDir$dir",bbCreateDir );
-	rtSym( "DeleteDir$dir",bbDeleteDir );
+	rtSym( "%ReadDir$dirname",(void*)bbReadDir );
+	rtSym( "CloseDir%dir",(void*)bbCloseDir );
+	rtSym( "$NextFile%dir",(void*)bbNextFile );
+	rtSym( "$CurrentDir",(void*)bbCurrentDir );
+	rtSym( "ChangeDir$dir",(void*)bbChangeDir );
+	rtSym( "CreateDir$dir",(void*)bbCreateDir );
+	rtSym( "DeleteDir$dir",(void*)bbDeleteDir );
 
-	rtSym( "%FileSize$file",bbFileSize );
-	rtSym( "%FileType$file",bbFileType );
-	rtSym( "CopyFile$file$to",bbCopyFile );
-	rtSym( "DeleteFile$file",bbDeleteFile );
+	rtSym( "%FileSize$file",(void*)bbFileSize );
+	rtSym( "%FileType$file",(void*)bbFileType );
+	rtSym( "CopyFile$file$to",(void*)bbCopyFile );
+	rtSym( "DeleteFile$file",(void*)bbDeleteFile );
 }

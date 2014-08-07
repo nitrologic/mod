@@ -102,7 +102,8 @@ int UDPStream::recv(){
 		if( ioctlsocket( sock,FIONREAD,&sz ) ){ e=-1;return 0; }
 		in_buf.resize( sz );in_get=0;
 		int len=sizeof(in_addr);
-		n=::recvfrom( sock,in_buf.begin(),sz,0,(sockaddr*)&in_addr,&len );
+//		n=::recvfrom( sock,in_buf.begin(),sz,0,(sockaddr*)&in_addr,&len );
+		n=::recvfrom( sock,&in_buf[0],sz,0,(sockaddr*)&in_addr,&len );
 		if( n==SOCKET_ERROR ) continue;	//{ e=-1;return 0; }
 		in_buf.resize( n );
 		return getMsgIP();
@@ -116,7 +117,7 @@ int UDPStream::send( int ip,int port ){
 	int sz=out_buf.size();
 	out_addr.sin_addr.S_un.S_addr=htonl( ip );
 	out_addr.sin_port=htons( port ? port : addr.sin_port );
-	int n=::sendto( sock,out_buf.begin(),sz,0,(sockaddr*)&out_addr,sizeof(out_addr) );
+	int n=::sendto( sock,&out_buf[0],sz,0,(sockaddr*)&out_addr,sizeof(out_addr) );
 	if( n!=sz ) return e=-1;
 	out_buf.clear();
 	return sz;
@@ -480,26 +481,26 @@ bool sockets_destroy(){
 }
 
 void sockets_link( void(*rtSym)(const char*,void*) ){
-	rtSym( "$DottedIP%IP",bbDottedIP );
-	rtSym( "%CountHostIPs$host_name",bbCountHostIPs );
-	rtSym( "%HostIP%host_index",bbHostIP );
+	rtSym( "$DottedIP%IP",(void*)bbDottedIP );
+	rtSym( "%CountHostIPs$host_name",(void*)bbCountHostIPs );
+	rtSym( "%HostIP%host_index",(void*)bbHostIP );
 
-	rtSym( "%CreateUDPStream%port=0",bbCreateUDPStream );
-	rtSym( "CloseUDPStream%udp_stream",bbCloseUDPStream );
-	rtSym( "SendUDPMsg%udp_stream%dest_ip%dest_port=0",bbSendUDPMsg );
-	rtSym( "%RecvUDPMsg%udp_stream",bbRecvUDPMsg );
-	rtSym( "%UDPStreamIP%udp_stream",bbUDPStreamIP );
-	rtSym( "%UDPStreamPort%udp_stream",bbUDPStreamPort );
-	rtSym( "%UDPMsgIP%udp_stream",bbUDPMsgIP );
-	rtSym( "%UDPMsgPort%udp_stream",bbUDPMsgPort );
-	rtSym( "UDPTimeouts%recv_timeout",bbUDPTimeouts );
+	rtSym( "%CreateUDPStream%port=0",(void*)bbCreateUDPStream );
+	rtSym( "CloseUDPStream%udp_stream",(void*)bbCloseUDPStream );
+	rtSym( "SendUDPMsg%udp_stream%dest_ip%dest_port=0",(void*)bbSendUDPMsg );
+	rtSym( "%RecvUDPMsg%udp_stream",(void*)bbRecvUDPMsg );
+	rtSym( "%UDPStreamIP%udp_stream",(void*)bbUDPStreamIP );
+	rtSym( "%UDPStreamPort%udp_stream",(void*)bbUDPStreamPort );
+	rtSym( "%UDPMsgIP%udp_stream",(void*)bbUDPMsgIP );
+	rtSym( "%UDPMsgPort%udp_stream",(void*)bbUDPMsgPort );
+	rtSym( "UDPTimeouts%recv_timeout",(void*)bbUDPTimeouts );
 
-	rtSym( "%OpenTCPStream$server%server_port%local_port=0",bbOpenTCPStream );
-	rtSym( "CloseTCPStream%tcp_stream",bbCloseTCPStream );
-	rtSym( "%CreateTCPServer%port",bbCreateTCPServer );
-	rtSym( "CloseTCPServer%tcp_server",bbCloseTCPServer );
-	rtSym( "%AcceptTCPStream%tcp_server",bbAcceptTCPStream );
-	rtSym( "%TCPStreamIP%tcp_stream",bbTCPStreamIP );
-	rtSym( "%TCPStreamPort%tcp_stream",bbTCPStreamPort );
-	rtSym( "TCPTimeouts%read_millis%accept_millis",bbTCPTimeouts );
+	rtSym( "%OpenTCPStream$server%server_port%local_port=0",(void*)bbOpenTCPStream );
+	rtSym( "CloseTCPStream%tcp_stream",(void*)bbCloseTCPStream );
+	rtSym( "%CreateTCPServer%port",(void*)bbCreateTCPServer );
+	rtSym( "CloseTCPServer%tcp_server",(void*)bbCloseTCPServer );
+	rtSym( "%AcceptTCPStream%tcp_server",(void*)bbAcceptTCPStream );
+	rtSym( "%TCPStreamIP%tcp_stream",(void*)bbTCPStreamIP );
+	rtSym( "%TCPStreamPort%tcp_stream",(void*)bbTCPStreamPort );
+	rtSym( "TCPTimeouts%read_millis%accept_millis",(void*)bbTCPTimeouts );
 }

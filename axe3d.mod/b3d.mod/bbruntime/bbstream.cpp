@@ -139,21 +139,21 @@ bool stream_destroy(){
 }
 
 void stream_link( void(*rtSym)(const char*,void*) ){
-	rtSym( "%Eof%stream",bbEof );
-	rtSym( "%ReadAvail%stream",bbReadAvail );
-	rtSym( "%ReadByte%stream",bbReadByte );
-	rtSym( "%ReadShort%stream",bbReadShort );
-	rtSym( "%ReadInt%stream",bbReadInt );
-	rtSym( "#ReadFloat%stream",bbReadFloat );
-	rtSym( "$ReadString%stream",bbReadString );
-	rtSym( "$ReadLine%stream",bbReadLine );
-	rtSym( "WriteByte%stream%byte",bbWriteByte );
-	rtSym( "WriteShort%stream%short",bbWriteShort );
-	rtSym( "WriteInt%stream%int",bbWriteInt );
-	rtSym( "WriteFloat%stream#float",bbWriteFloat );
-	rtSym( "WriteString%stream$string",bbWriteString );
-	rtSym( "WriteLine%stream$string",bbWriteLine );
-	rtSym( "CopyStream%src_stream%dest_stream%buffer_size=16384",bbCopyStream );
+	rtSym( "%Eof%stream",(void*)bbEof );
+	rtSym( "%ReadAvail%stream",(void*)bbReadAvail );
+	rtSym( "%ReadByte%stream",(void*)bbReadByte );
+	rtSym( "%ReadShort%stream",(void*)bbReadShort );
+	rtSym( "%ReadInt%stream",(void*)bbReadInt );
+	rtSym( "#ReadFloat%stream",(void*)bbReadFloat );
+	rtSym( "$ReadString%stream",(void*)bbReadString );
+	rtSym( "$ReadLine%stream",(void*)bbReadLine );
+	rtSym( "WriteByte%stream%byte",(void*)bbWriteByte );
+	rtSym( "WriteShort%stream%short",(void*)bbWriteShort );
+	rtSym( "WriteInt%stream%int",(void*)bbWriteInt );
+	rtSym( "WriteFloat%stream#float",(void*)bbWriteFloat );
+	rtSym( "WriteString%stream$string",(void*)bbWriteString );
+	rtSym( "WriteLine%stream$string",(void*)bbWriteLine );
+	rtSym( "CopyStream%src_stream%dest_stream%buffer_size=16384",(void*)bbCopyStream );
 }
 
 

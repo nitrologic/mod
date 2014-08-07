@@ -19,11 +19,11 @@ void _bbLoadLibs( char *p ){
 		_mods.push_back(mod);
 		p+=strlen(p)+1;
 		while( *p ){
-			void *proc=GetProcAddress( mod,p );
+			void *proc=(void*)GetProcAddress( mod,p );
 			p+=strlen(p)+1;
 			void *ptr=*(void**)p;
 			p+=4;
-			if( !proc ) proc=procNotFound;
+			if( !proc ) proc=(void*)procNotFound;
 			*(void**)ptr=proc;
 		}
 	}
