@@ -7,8 +7,6 @@
 
 extern gxRuntime *gx_runtime;
 
-#include "..\..\freeimage241\source\freeimage.h"
-
 static AsmCoder asm_coder;
 
 static void calcShifts( unsigned mask,unsigned char *shr,unsigned char *shl ){
@@ -454,6 +452,11 @@ IDirectDrawSurface7 *loadDXTC(const char* filename,gxGraphics *gfx)
 	return newSurf;
 }
 
+
+#ifdef HAS_FREEIMAGE
+
+#include "..\..\freeimage241\source\freeimage.h"
+
 ddSurf *ddUtil::loadSurface( const std::string &f,int flags,gxGraphics *gfx ){
 
 	int i=f.find( ".dds" );
@@ -523,3 +526,5 @@ ddSurf *ddUtil::loadSurface( const std::string &f,int flags,gxGraphics *gfx ){
 	FreeImage_Unload( dib );
 	return dest;
 }
+
+#endif
