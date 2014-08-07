@@ -196,7 +196,7 @@ static BOOL CALLBACK dialogProc( HWND hwnd,UINT msg,WPARAM wparam,LPARAM lparam 
 	case WM_INITDIALOG:
 		SetForegroundWindow( hwnd );
 		clearConnections();
-		connections.push_back( d_new Connection( GUID_NULL,"<no connection>","",0 ) );
+		connections.push_back( d_new Connection( GUID_NULL,"<no connection>",(void*)"",0 ) );
 		if( openDirPlay( hwnd ) ){
 			if( dirPlay->EnumConnections( 0,enumConnection,0,0 )<0 ){
 				MessageBox( hwnd,"Failed to enumerate connections","DirectPlay Error",MB_SETFOREGROUND|MB_TOPMOST|MB_ICONWARNING|MB_OK );

@@ -141,22 +141,22 @@ bool string_destroy(){
 }
 
 void string_link( void(*rtSym)(const char*,void*) ){
-	rtSym( "$String$string%repeat",bbString );
-	rtSym( "$Left$string%count",bbLeft );
-	rtSym( "$Right$string%count",bbRight );
-	rtSym( "$Replace$string$from$to",bbReplace );
-	rtSym( "%Instr$string$find%from=1",bbInstr );
-	rtSym( "$Mid$string%start%count=-1",bbMid );
-	rtSym( "$Upper$string",bbUpper );
-	rtSym( "$Lower$string",bbLower );
-	rtSym( "$Trim$string",bbTrim );
-	rtSym( "$LSet$string%size",bbLSet );
-	rtSym( "$RSet$string%size",bbRSet );
-	rtSym( "$Chr%ascii",bbChr );
-	rtSym( "%Asc$string",bbAsc );
-	rtSym( "%Len$string",bbLen );
-	rtSym( "$Hex%value",bbHex );
-	rtSym( "$Bin%value",bbBin );
-	rtSym( "$CurrentDate",bbCurrentDate );
-	rtSym( "$CurrentTime",bbCurrentTime );
+	rtSym( "$String$string%repeat",(void*)bbString );
+	rtSym( "$Left$string%count",(void*)bbLeft );
+	rtSym( "$Right$string%count",(void*)bbRight );
+	rtSym( "$Replace$string$from$to",(void*)bbReplace );
+	rtSym( "%Instr$string$find%from=1",(void*)bbInstr );
+	rtSym( "$Mid$string%start%count=-1",(void*)bbMid );
+	rtSym( "$Upper$string",(void*)bbUpper );
+	rtSym( "$Lower$string",(void*)bbLower );
+	rtSym( "$Trim$string",(void*)bbTrim );
+	rtSym( "$LSet$string%size",(void*)bbLSet );
+	rtSym( "$RSet$string%size",(void*)bbRSet );
+	rtSym( "$Chr%ascii",(void*)bbChr );
+	rtSym( "%Asc$string",(void*)bbAsc );
+	rtSym( "%Len$string",(void*)bbLen );
+	rtSym( "$Hex%value",(void*)bbHex );
+	rtSym( "$Bin%value",(void*)bbBin );
+	rtSym( "$CurrentDate",(void*)bbCurrentDate );
+	rtSym( "$CurrentTime",(void*)bbCurrentTime );
 }

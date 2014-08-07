@@ -16,7 +16,7 @@ void (__fastcall *plot)(void *s,int argb);
 int	(__fastcall *point)(void*s);
 void (__fastcall *span)(void *s,int *argb,int n);
 
-void main() 
+void bad_main() 
 {
 	void	*pixmap;
 	int		n;
@@ -29,18 +29,18 @@ void main()
 	point=(int (__fastcall *)(void*))new char[96];
 	span=(void (__fastcall *)(void*,int*,int))new char[96];
 
-//	n=coder->CodePlot(plot,16,0,0xf800,0x07e0,0x001f);		//0:5:6:5
+//	n=coder->CodePlot((void*)plot,16,0,0xf800,0x07e0,0x001f);		//0:5:6:5
 //	printf("plotcode size=%d\n",n);
 //	n=coder->CodePoint(point,16,0,0xf800,0x07e0,0x001f);		//0:5:6:5
 //	printf("pointcode size=%d\n",n);
 
-	n=coder->CodePlot(plot,24,0,0xff0000,0xff00,0xff);		//0:5:6:5
+	n=coder->CodePlot((void*)plot,24,0,0xff0000,0xff00,0xff);		//0:5:6:5
 	printf("plotcode size=%d\n",n);
 
-	n=coder->CodePoint(point,24,0,0xff0000,0xff00,0x00ff);		//0:5:6:5
+	n=coder->CodePoint((void*)point,24,0,0xff0000,0xff00,0x00ff);		//0:5:6:5
 	printf("pointcode size=%d\n",n);
 	
-	n=coder->CodeSpan(span,24,0,0xff0000,0xff00,0x00ff);		//0:5:6:5
+	n=coder->CodeSpan((void*)span,24,0,0xff0000,0xff00,0x00ff);		//0:5:6:5
 	printf("scancode size=%d\n",n);
 
 	printf("&plot=0x%x\n",(int)plot);
@@ -60,10 +60,11 @@ void main()
 	delete (void *)point;
 	delete pixmap;
 	delete coder;
-	return;
 }
 
 //	void (__fastcall *plot)(int x,int y,int argb,Surface *s)=(void (__fastcall *)(int,int,int,Surface*))code;
+
+#ifdef MS_COMPILER
 
 void ortest()
 {
@@ -72,3 +73,7 @@ __asm{
 		or		eax,-100
 	}
 }
+
+#endif
+
+

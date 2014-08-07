@@ -16,12 +16,14 @@ static Str _strs[256];
 static int _nextStr;
 
 static void libNotFound(){
-	RTEX( "User lib not found" );
+//	RTEX( "User lib not found" );
 }
 
 static void procNotFound(){
-	RTEX( "User lib function not found" );
+//	RTEX( "User lib function not found" );
 }
+
+#ifdef LOAD_LIBS
 
 void _bbLoadLibs( char *p ){
 
@@ -38,7 +40,7 @@ void _bbLoadLibs( char *p ){
 		if( mod ){
 			_mods.push_back( mod );
 			while( *p ){
-				void *proc=GetProcAddress( mod,p );
+				void *proc=(void*)GetProcAddress( mod,p );
 				p+=strlen(p)+1;
 				void *ptr=*(void**)p;
 				p+=4;
@@ -55,6 +57,7 @@ void _bbLoadLibs( char *p ){
 		++p;
 	}
 }
+#endif
 
 const char*  _bbStrToCStr( BBStr *str ){
 
@@ -87,9 +90,9 @@ void userlibs_destroy(){
 }
 
 void userlibs_link( void(*rtSym)(const char*,void*) ){
-	rtSym( "_bbLoadLibs",_bbLoadLibs );
-	rtSym( "_bbStrToCStr",_bbStrToCStr );
-	rtSym( "_bbCStrToStr",_bbCStrToStr );
+	rtSym( "_bbLoadLibs",(void*)_bbLoadLibs );
+	rtSym( "_bbStrToCStr",(void*)_bbStrToCStr );
+	rtSym( "_bbCStrToStr",(void*)_bbCStrToStr );
 }
 
 

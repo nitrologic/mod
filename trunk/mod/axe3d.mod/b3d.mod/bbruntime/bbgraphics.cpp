@@ -1208,143 +1208,143 @@ bool graphics_destroy(){
 void graphics_link( void (*rtSym)( const char *sym,void *pc ) ){
 
 	//gfx driver info
-	rtSym( "%CountGfxDrivers",bbCountGfxDrivers );
-	rtSym( "$GfxDriverName%driver",bbGfxDriverName );
-	rtSym( "SetGfxDriver%driver",bbSetGfxDriver );
+	rtSym( "%CountGfxDrivers",(void*)bbCountGfxDrivers );
+	rtSym( "$GfxDriverName%driver",(void*)bbGfxDriverName );
+	rtSym( "SetGfxDriver%driver",(void*)bbSetGfxDriver );
 
 	//gfx mode info
-	rtSym( "%CountGfxModes",bbCountGfxModes );
-	rtSym( "%GfxModeExists%width%height%depth",bbGfxModeExists );
+	rtSym( "%CountGfxModes",(void*)bbCountGfxModes );
+	rtSym( "%GfxModeExists%width%height%depth",(void*)bbGfxModeExists );
 
-	rtSym( "%GfxModeWidth%mode",bbGfxModeWidth );
-	rtSym( "%GfxModeHeight%mode",bbGfxModeHeight );
-	rtSym( "%GfxModeDepth%mode",bbGfxModeDepth );
-	rtSym( "%AvailVidMem",bbAvailVidMem );
-	rtSym( "%TotalVidMem",bbTotalVidMem );
+	rtSym( "%GfxModeWidth%mode",(void*)bbGfxModeWidth );
+	rtSym( "%GfxModeHeight%mode",(void*)bbGfxModeHeight );
+	rtSym( "%GfxModeDepth%mode",(void*)bbGfxModeDepth );
+	rtSym( "%AvailVidMem",(void*)bbAvailVidMem );
+	rtSym( "%TotalVidMem",(void*)bbTotalVidMem );
 
 #ifdef PRO
-	rtSym( "%GfxDriver3D%driver",bbGfxDriver3D );
-	rtSym( "%CountGfxModes3D",bbCountGfxModes3D );
-	rtSym( "%GfxMode3DExists%width%height%depth",bbGfxMode3DExists );
-	rtSym( "%GfxMode3D%mode",bbGfxMode3D );
-	rtSym( "%Windowed3D",bbWindowed3D );
+	rtSym( "%GfxDriver3D%driver",(void*)bbGfxDriver3D );
+	rtSym( "%CountGfxModes3D",(void*)bbCountGfxModes3D );
+	rtSym( "%GfxMode3DExists%width%height%depth",(void*)bbGfxMode3DExists );
+	rtSym( "%GfxMode3D%mode",(void*)bbGfxMode3D );
+	rtSym( "%Windowed3D",(void*)bbWindowed3D );
 #endif
 
 	//display mode
-	rtSym( "Graphics%width%height%depth=0%mode=0",bbGraphics );
+	rtSym( "Graphics%width%height%depth=0%mode=0",(void*)bbGraphics );
 #ifdef PRO
-	rtSym( "Graphics3D%width%height%depth=0%mode=0",bbGraphics3D );
+	rtSym( "Graphics3D%width%height%depth=0%mode=0",(void*)bbGraphics3D );
 #endif
-	rtSym( "EndGraphics",bbEndGraphics );
-	rtSym( "%GraphicsLost",bbGraphicsLost );
+	rtSym( "EndGraphics",(void*)bbEndGraphics );
+	rtSym( "%GraphicsLost",(void*)bbGraphicsLost );
 
-	rtSym( "SetGamma%src_red%src_green%src_blue#dest_red#dest_green#dest_blue",bbSetGamma );
-	rtSym( "UpdateGamma%calibrate=0",bbUpdateGamma );
-	rtSym( "#GammaRed%red",bbGammaRed );
-	rtSym( "#GammaGreen%green",bbGammaGreen );
-	rtSym( "#GammaBlue%blue",bbGammaBlue );
+	rtSym( "SetGamma%src_red%src_green%src_blue#dest_red#dest_green#dest_blue",(void*)bbSetGamma );
+	rtSym( "UpdateGamma%calibrate=0",(void*)bbUpdateGamma );
+	rtSym( "#GammaRed%red",(void*)bbGammaRed );
+	rtSym( "#GammaGreen%green",(void*)bbGammaGreen );
+	rtSym( "#GammaBlue%blue",(void*)bbGammaBlue );
 
-	rtSym( "%FrontBuffer",bbFrontBuffer );
-	rtSym( "%BackBuffer",bbBackBuffer );
-	rtSym( "%ScanLine",bbScanLine );
-	rtSym( "VWait%frames=1",bbVWait );
-	rtSym( "Flip%vwait=1",bbFlip );
-	rtSym( "%GraphicsWidth",bbGraphicsWidth );
-	rtSym( "%GraphicsHeight",bbGraphicsHeight );
-	rtSym( "%GraphicsDepth",bbGraphicsDepth );
+	rtSym( "%FrontBuffer",(void*)bbFrontBuffer );
+	rtSym( "%BackBuffer",(void*)bbBackBuffer );
+	rtSym( "%ScanLine",(void*)bbScanLine );
+	rtSym( "VWait%frames=1",(void*)bbVWait );
+	rtSym( "Flip%vwait=1",(void*)bbFlip );
+	rtSym( "%GraphicsWidth",(void*)bbGraphicsWidth );
+	rtSym( "%GraphicsHeight",(void*)bbGraphicsHeight );
+	rtSym( "%GraphicsDepth",(void*)bbGraphicsDepth );
 
 	//buffer management
-	rtSym( "SetBuffer%buffer",bbSetBuffer );
-	rtSym( "%GraphicsBuffer",bbGraphicsBuffer );
-	rtSym( "%LoadBuffer%buffer$bmpfile",bbLoadBuffer );
-	rtSym( "%SaveBuffer%buffer$bmpfile",bbSaveBuffer );
-	rtSym( "BufferDirty%buffer",bbBufferDirty );
+	rtSym( "SetBuffer%buffer",(void*)bbSetBuffer );
+	rtSym( "%GraphicsBuffer",(void*)bbGraphicsBuffer );
+	rtSym( "%LoadBuffer%buffer$bmpfile",(void*)bbLoadBuffer );
+	rtSym( "%SaveBuffer%buffer$bmpfile",(void*)bbSaveBuffer );
+	rtSym( "BufferDirty%buffer",(void*)bbBufferDirty );
 
 	//fast pixel reads/write
-	rtSym( "LockBuffer%buffer=0",bbLockBuffer );
-	rtSym( "UnlockBuffer%buffer=0",bbUnlockBuffer );
-	rtSym( "%ReadPixel%x%y%buffer=0",bbReadPixel );
-	rtSym( "WritePixel%x%y%argb%buffer=0",bbWritePixel );
-	rtSym( "%ReadPixelFast%x%y%buffer=0",bbReadPixelFast );
-	rtSym( "WritePixelFast%x%y%argb%buffer=0",bbWritePixelFast );
-	rtSym( "CopyPixel%src_x%src_y%src_buffer%dest_x%dest_y%dest_buffer=0",bbCopyPixel );
-	rtSym( "CopyPixelFast%src_x%src_y%src_buffer%dest_x%dest_y%dest_buffer=0",bbCopyPixelFast );
+	rtSym( "LockBuffer%buffer=0",(void*)bbLockBuffer );
+	rtSym( "UnlockBuffer%buffer=0",(void*)bbUnlockBuffer );
+	rtSym( "%ReadPixel%x%y%buffer=0",(void*)bbReadPixel );
+	rtSym( "WritePixel%x%y%argb%buffer=0",(void*)bbWritePixel );
+	rtSym( "%ReadPixelFast%x%y%buffer=0",(void*)bbReadPixelFast );
+	rtSym( "WritePixelFast%x%y%argb%buffer=0",(void*)bbWritePixelFast );
+	rtSym( "CopyPixel%src_x%src_y%src_buffer%dest_x%dest_y%dest_buffer=0",(void*)bbCopyPixel );
+	rtSym( "CopyPixelFast%src_x%src_y%src_buffer%dest_x%dest_y%dest_buffer=0",(void*)bbCopyPixelFast );
 
 	//rendering
-	rtSym( "Origin%x%y",bbOrigin );
-	rtSym( "Viewport%x%y%width%height",bbViewport );
-	rtSym( "Color%red%green%blue",bbColor );
-	rtSym( "GetColor%x%y",bbGetColor );
-	rtSym( "%ColorRed",bbColorRed );
-	rtSym( "%ColorGreen",bbColorGreen );
-	rtSym( "%ColorBlue",bbColorBlue );
-	rtSym( "ClsColor%red%green%blue",bbClsColor );
-	rtSym( "SetFont%font",bbSetFont );
-	rtSym( "Cls",bbCls );
-	rtSym( "Plot%x%y",bbPlot );
-	rtSym( "Rect%x%y%width%height%solid=1",bbRect );
-	rtSym( "Oval%x%y%width%height%solid=1",bbOval );
-	rtSym( "Line%x1%y1%x2%y2",bbLine );
-	rtSym( "Text%x%y$text%centre_x=0%centre_y=0",bbText );
-	rtSym( "CopyRect%source_x%source_y%width%height%dest_x%dest_y%src_buffer=0%dest_buffer=0",bbCopyRect );
+	rtSym( "Origin%x%y",(void*)bbOrigin );
+	rtSym( "Viewport%x%y%width%height",(void*)bbViewport );
+	rtSym( "Color%red%green%blue",(void*)bbColor );
+	rtSym( "GetColor%x%y",(void*)bbGetColor );
+	rtSym( "%ColorRed",(void*)bbColorRed );
+	rtSym( "%ColorGreen",(void*)bbColorGreen );
+	rtSym( "%ColorBlue",(void*)bbColorBlue );
+	rtSym( "ClsColor%red%green%blue",(void*)bbClsColor );
+	rtSym( "SetFont%font",(void*)bbSetFont );
+	rtSym( "Cls",(void*)bbCls );
+	rtSym( "Plot%x%y",(void*)bbPlot );
+	rtSym( "Rect%x%y%width%height%solid=1",(void*)bbRect );
+	rtSym( "Oval%x%y%width%height%solid=1",(void*)bbOval );
+	rtSym( "Line%x1%y1%x2%y2",(void*)bbLine );
+	rtSym( "Text%x%y$text%centre_x=0%centre_y=0",(void*)bbText );
+	rtSym( "CopyRect%source_x%source_y%width%height%dest_x%dest_y%src_buffer=0%dest_buffer=0",(void*)bbCopyRect );
 
 	//fonts
-	rtSym( "%LoadFont$fontname%height=12%bold=0%italic=0%underline=0",bbLoadFont );
-	rtSym( "FreeFont%font",bbFreeFont );
-	rtSym( "%FontWidth",bbFontWidth );
-	rtSym( "%FontHeight",bbFontHeight );
-	rtSym( "%StringWidth$string",bbStringWidth );
-	rtSym( "%StringHeight$string",bbStringHeight );
+	rtSym( "%LoadFont$fontname%height=12%bold=0%italic=0%underline=0",(void*)bbLoadFont );
+	rtSym( "FreeFont%font",(void*)bbFreeFont );
+	rtSym( "%FontWidth",(void*)bbFontWidth );
+	rtSym( "%FontHeight",(void*)bbFontHeight );
+	rtSym( "%StringWidth$string",(void*)bbStringWidth );
+	rtSym( "%StringHeight$string",(void*)bbStringHeight );
 
 	//movies
-	rtSym( "%OpenMovie$file",bbOpenMovie );
-	rtSym( "%DrawMovie%movie%x=0%y=0%w=-1%h=-1",bbDrawMovie );
-	rtSym( "%MovieWidth%movie",bbMovieWidth );
-	rtSym( "%MovieHeight%movie",bbMovieHeight );
-	rtSym( "%MoviePlaying%movie",bbMoviePlaying );
-	rtSym( "CloseMovie%movie",bbCloseMovie );
+	rtSym( "%OpenMovie$file",(void*)bbOpenMovie );
+	rtSym( "%DrawMovie%movie%x=0%y=0%w=-1%h=-1",(void*)bbDrawMovie );
+	rtSym( "%MovieWidth%movie",(void*)bbMovieWidth );
+	rtSym( "%MovieHeight%movie",(void*)bbMovieHeight );
+	rtSym( "%MoviePlaying%movie",(void*)bbMoviePlaying );
+	rtSym( "CloseMovie%movie",(void*)bbCloseMovie );
 
-	rtSym( "%LoadImage$bmpfile",bbLoadImage );
-	rtSym( "%LoadAnimImage$bmpfile%cellwidth%cellheight%first%count",bbLoadAnimImage );
-	rtSym( "%CopyImage%image",bbCopyImage );
-	rtSym( "%CreateImage%width%height%frames=1",bbCreateImage );
-	rtSym( "FreeImage%image",bbFreeImage );
-	rtSym( "%SaveImage%image$bmpfile%frame=0",bbSaveImage );
+	rtSym( "%LoadImage$bmpfile",(void*)bbLoadImage );
+	rtSym( "%LoadAnimImage$bmpfile%cellwidth%cellheight%first%count",(void*)bbLoadAnimImage );
+	rtSym( "%CopyImage%image",(void*)bbCopyImage );
+	rtSym( "%CreateImage%width%height%frames=1",(void*)bbCreateImage );
+	rtSym( "FreeImage%image",(void*)bbFreeImage );
+	rtSym( "%SaveImage%image$bmpfile%frame=0",(void*)bbSaveImage );
 
-	rtSym( "GrabImage%image%x%y%frame=0",bbGrabImage );
-	rtSym( "%ImageBuffer%image%frame=0",bbImageBuffer );
-	rtSym( "DrawImage%image%x%y%frame=0",bbDrawImage );
-	rtSym( "DrawBlock%image%x%y%frame=0",bbDrawBlock );
-	rtSym( "TileImage%image%x=0%y=0%frame=0",bbTileImage );
-	rtSym( "TileBlock%image%x=0%y=0%frame=0",bbTileBlock );
-	rtSym( "DrawImageRect%image%x%y%rect_x%rect_y%rect_width%rect_height%frame=0",bbDrawImageRect );
-	rtSym( "DrawBlockRect%image%x%y%rect_x%rect_y%rect_width%rect_height%frame=0",bbDrawBlockRect );
-	rtSym( "MaskImage%image%red%green%blue",bbMaskImage );
-	rtSym( "HandleImage%image%x%y",bbHandleImage );
-	rtSym( "MidHandle%image",bbMidHandle );
-	rtSym( "AutoMidHandle%enable",bbAutoMidHandle );
-	rtSym( "%ImageWidth%image",bbImageWidth );
-	rtSym( "%ImageHeight%image",bbImageHeight );
-	rtSym( "%ImageXHandle%image",bbImageXHandle );
-	rtSym( "%ImageYHandle%image",bbImageYHandle );
+	rtSym( "GrabImage%image%x%y%frame=0",(void*)bbGrabImage );
+	rtSym( "%ImageBuffer%image%frame=0",(void*)bbImageBuffer );
+	rtSym( "DrawImage%image%x%y%frame=0",(void*)bbDrawImage );
+	rtSym( "DrawBlock%image%x%y%frame=0",(void*)bbDrawBlock );
+	rtSym( "TileImage%image%x=0%y=0%frame=0",(void*)bbTileImage );
+	rtSym( "TileBlock%image%x=0%y=0%frame=0",(void*)bbTileBlock );
+	rtSym( "DrawImageRect%image%x%y%rect_x%rect_y%rect_width%rect_height%frame=0",(void*)bbDrawImageRect );
+	rtSym( "DrawBlockRect%image%x%y%rect_x%rect_y%rect_width%rect_height%frame=0",(void*)bbDrawBlockRect );
+	rtSym( "MaskImage%image%red%green%blue",(void*)bbMaskImage );
+	rtSym( "HandleImage%image%x%y",(void*)bbHandleImage );
+	rtSym( "MidHandle%image",(void*)bbMidHandle );
+	rtSym( "AutoMidHandle%enable",(void*)bbAutoMidHandle );
+	rtSym( "%ImageWidth%image",(void*)bbImageWidth );
+	rtSym( "%ImageHeight%image",(void*)bbImageHeight );
+	rtSym( "%ImageXHandle%image",(void*)bbImageXHandle );
+	rtSym( "%ImageYHandle%image",(void*)bbImageYHandle );
 
-	rtSym( "ScaleImage%image#xscale#yscale",bbScaleImage );
-	rtSym( "ResizeImage%image#width#height",bbResizeImage );
-	rtSym( "RotateImage%image#angle",bbRotateImage );
-	rtSym( "TFormImage%image#a#b#c#d",bbTFormImage );
-	rtSym( "TFormFilter%enable",bbTFormFilter );
+	rtSym( "ScaleImage%image#xscale#yscale",(void*)bbScaleImage );
+	rtSym( "ResizeImage%image#width#height",(void*)bbResizeImage );
+	rtSym( "RotateImage%image#angle",(void*)bbRotateImage );
+	rtSym( "TFormImage%image#a#b#c#d",(void*)bbTFormImage );
+	rtSym( "TFormFilter%enable",(void*)bbTFormFilter );
 
-	rtSym( "%ImagesOverlap%image1%x1%y1%image2%x2%y2",bbImagesOverlap );
-	rtSym( "%ImagesCollide%image1%x1%y1%frame1%image2%x2%y2%frame2",bbImagesCollide );
-	rtSym( "%RectsOverlap%x1%y1%width1%height1%x2%y2%width2%height2",bbRectsOverlap );
-	rtSym( "%ImageRectOverlap%image%x%y%rect_x%rect_y%rect_width%rect_height",bbImageRectOverlap );
-	rtSym( "%ImageRectCollide%image%x%y%frame%rect_x%rect_y%rect_width%rect_height",bbImageRectCollide );
+	rtSym( "%ImagesOverlap%image1%x1%y1%image2%x2%y2",(void*)bbImagesOverlap );
+	rtSym( "%ImagesCollide%image1%x1%y1%frame1%image2%x2%y2%frame2",(void*)bbImagesCollide );
+	rtSym( "%RectsOverlap%x1%y1%width1%height1%x2%y2%width2%height2",(void*)bbRectsOverlap );
+	rtSym( "%ImageRectOverlap%image%x%y%rect_x%rect_y%rect_width%rect_height",(void*)bbImageRectOverlap );
+	rtSym( "%ImageRectCollide%image%x%y%frame%rect_x%rect_y%rect_width%rect_height",(void*)bbImageRectCollide );
 
-	rtSym( "Write$string",bbWrite );
-	rtSym( "Print$string=\"\"",bbPrint );
-	rtSym( "$Input$prompt=\"\"",bbInput );
-	rtSym( "Locate%x%y",bbLocate );
+	rtSym( "Write$string",(void*)bbWrite );
+	rtSym( "Print$string=\"\"",(void*)bbPrint );
+	rtSym( "$Input$prompt=\"\"",(void*)bbInput );
+	rtSym( "Locate%x%y",(void*)bbLocate );
 
-	rtSym( "ShowPointer",bbShowPointer );
-	rtSym( "HidePointer",bbHidePointer );
+	rtSym( "ShowPointer",(void*)bbShowPointer );
+	rtSym( "HidePointer",(void*)bbHidePointer );
 }

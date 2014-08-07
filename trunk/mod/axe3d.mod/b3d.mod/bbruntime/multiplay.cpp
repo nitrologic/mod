@@ -44,7 +44,7 @@ struct Player{
 		player_map.clear();
 	}
 
-	Player::~Player(){
+	~Player(){
 		new_players.remove( this );
 		players.remove( this );
 		player_map.clear();
@@ -81,23 +81,23 @@ static BOOL FAR PASCAL enumPlayer( DPID id,DWORD type,LPCDPNAME name,DWORD flags
 }
 
 void multiplay_link( void(*rtSym)(const char*,void*) ){
-	rtSym( "%StartNetGame",bbStartNetGame );
-	rtSym( "%HostNetGame$game_name",bbHostNetGame );
-	rtSym( "%JoinNetGame$game_name$ip_address",bbJoinNetGame );
-	rtSym( "StopNetGame",bbStopNetGame );
+	rtSym( "%StartNetGame",(void*)bbStartNetGame );
+	rtSym( "%HostNetGame$game_name",(void*)bbHostNetGame );
+	rtSym( "%JoinNetGame$game_name$ip_address",(void*)bbJoinNetGame );
+	rtSym( "StopNetGame",(void*)bbStopNetGame );
 
-	rtSym( "%CreateNetPlayer$name",bbCreateNetPlayer );
-	rtSym( "DeleteNetPlayer%player",bbDeleteNetPlayer );
-	rtSym( "$NetPlayerName%player",bbNetPlayerName );
-	rtSym( "%NetPlayerLocal%player",bbNetPlayerLocal );
+	rtSym( "%CreateNetPlayer$name",(void*)bbCreateNetPlayer );
+	rtSym( "DeleteNetPlayer%player",(void*)bbDeleteNetPlayer );
+	rtSym( "$NetPlayerName%player",(void*)bbNetPlayerName );
+	rtSym( "%NetPlayerLocal%player",(void*)bbNetPlayerLocal );
 
-	rtSym( "%SendNetMsg%type$msg%from_player%to_player=0%reliable=1",bbSendNetMsg );
+	rtSym( "%SendNetMsg%type$msg%from_player%to_player=0%reliable=1",(void*)bbSendNetMsg );
 
-	rtSym( "%RecvNetMsg",bbRecvNetMsg );
-	rtSym( "%NetMsgType",bbNetMsgType );
-	rtSym( "%NetMsgFrom",bbNetMsgFrom );
-	rtSym( "%NetMsgTo",bbNetMsgTo );
-	rtSym( "$NetMsgData",bbNetMsgData );
+	rtSym( "%RecvNetMsg",(void*)bbRecvNetMsg );
+	rtSym( "%NetMsgType",(void*)bbNetMsgType );
+	rtSym( "%NetMsgFrom",(void*)bbNetMsgFrom );
+	rtSym( "%NetMsgTo",(void*)bbNetMsgTo );
+	rtSym( "$NetMsgData",(void*)bbNetMsgData );
 }
 
 bool multiplay_create(){

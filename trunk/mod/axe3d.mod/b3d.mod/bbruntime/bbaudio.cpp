@@ -120,23 +120,23 @@ bool audio_destroy(){
 }
 
 void audio_link( void(*rtSym)(const char*,void*) ){
-	rtSym( "%LoadSound$filename",bbLoadSound );
-	rtSym( "FreeSound%sound",bbFreeSound );
-	rtSym( "LoopSound%sound",bbLoopSound );
-	rtSym( "SoundPitch%sound%pitch",bbSoundPitch );
-	rtSym( "SoundVolume%sound#volume",bbSoundVolume );
-	rtSym( "SoundPan%sound#pan",bbSoundPan );
-	rtSym( "%PlaySound%sound",bbPlaySound );
-	rtSym( "%PlayMusic$midifile",bbPlayMusic );
-	rtSym( "%PlayCDTrack%track%mode=1",bbPlayCDTrack );
-	rtSym( "StopChannel%channel",bbStopChannel );
-	rtSym( "PauseChannel%channel",bbPauseChannel );
-	rtSym( "ResumeChannel%channel",bbResumeChannel );
-	rtSym( "ChannelPitch%channel%pitch",bbChannelPitch );
-	rtSym( "ChannelVolume%channel#volume",bbChannelVolume );
-	rtSym( "ChannelPan%channel#pan",bbChannelPan );
-	rtSym( "%ChannelPlaying%channel",bbChannelPlaying );
+	rtSym( "%LoadSound$filename",(void*)bbLoadSound );
+	rtSym( "FreeSound%sound",(void*)bbFreeSound );
+	rtSym( "LoopSound%sound",(void*)bbLoopSound );
+	rtSym( "SoundPitch%sound%pitch",(void*)bbSoundPitch );
+	rtSym( "SoundVolume%sound#volume",(void*)bbSoundVolume );
+	rtSym( "SoundPan%sound#pan",(void*)bbSoundPan );
+	rtSym( "%PlaySound%sound",(void*)bbPlaySound );
+	rtSym( "%PlayMusic$midifile",(void*)bbPlayMusic );
+	rtSym( "%PlayCDTrack%track%mode=1",(void*)bbPlayCDTrack );
+	rtSym( "StopChannel%channel",(void*)bbStopChannel );
+	rtSym( "PauseChannel%channel",(void*)bbPauseChannel );
+	rtSym( "ResumeChannel%channel",(void*)bbResumeChannel );
+	rtSym( "ChannelPitch%channel%pitch",(void*)bbChannelPitch );
+	rtSym( "ChannelVolume%channel#volume",(void*)bbChannelVolume );
+	rtSym( "ChannelPan%channel#pan",(void*)bbChannelPan );
+	rtSym( "%ChannelPlaying%channel",(void*)bbChannelPlaying );
 #ifdef PRO
-	rtSym( "%Load3DSound$filename",bbLoad3DSound );
+	rtSym( "%Load3DSound$filename",(void*)bbLoad3DSound );
 #endif
 }

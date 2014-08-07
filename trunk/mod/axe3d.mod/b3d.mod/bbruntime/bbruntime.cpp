@@ -143,26 +143,26 @@ void blitz3d_link( void (*rtSym)( const char *sym,void *pc ) ){}
 
 void bbruntime_link( void (*rtSym)( const char *sym,void *pc ) ){
 
-	rtSym( "End",bbEnd );
-	rtSym( "Stop",bbStop );
-	rtSym( "AppTitle$title$close_prompt=\"\"",bbAppTitle );
-	rtSym( "RuntimeError$message",bbRuntimeError );
-	rtSym( "ExecFile$command",bbExecFile );
-	rtSym( "Delay%millisecs",bbDelay );
-	rtSym( "%MilliSecs",bbMilliSecs );
-	rtSym( "$CommandLine",bbCommandLine );
-	rtSym( "$SystemProperty$property",bbSystemProperty );
-	rtSym( "$GetEnv$env_var",bbGetEnv );
-	rtSym( "SetEnv$env_var$value",bbSetEnv );
+	rtSym( "End",(void*)bbEnd );
+	rtSym( "Stop",(void*)bbStop );
+	rtSym( "AppTitle$title$close_prompt=\"\"",(void*)bbAppTitle );
+	rtSym( "RuntimeError$message",(void*)bbRuntimeError );
+	rtSym( "ExecFile$command",(void*)bbExecFile );
+	rtSym( "Delay%millisecs",(void*)bbDelay );
+	rtSym( "%MilliSecs",(void*)bbMilliSecs );
+	rtSym( "$CommandLine",(void*)bbCommandLine );
+	rtSym( "$SystemProperty$property",(void*)bbSystemProperty );
+	rtSym( "$GetEnv$env_var",(void*)bbGetEnv );
+	rtSym( "SetEnv$env_var$value",(void*)bbSetEnv );
 
-	rtSym( "%CreateTimer%hertz",bbCreateTimer );
-	rtSym( "%WaitTimer%timer",bbWaitTimer );
-	rtSym( "FreeTimer%timer",bbFreeTimer );
-	rtSym( "DebugLog$text",bbDebugLog );
+	rtSym( "%CreateTimer%hertz",(void*)bbCreateTimer );
+	rtSym( "%WaitTimer%timer",(void*)bbWaitTimer );
+	rtSym( "FreeTimer%timer",(void*)bbFreeTimer );
+	rtSym( "DebugLog$text",(void*)bbDebugLog );
 
-	rtSym( "_bbDebugStmt",_bbDebugStmt );
-	rtSym( "_bbDebugEnter",_bbDebugEnter );
-	rtSym( "_bbDebugLeave",_bbDebugLeave );
+	rtSym( "_bbDebugStmt",(void*)_bbDebugStmt );
+	rtSym( "_bbDebugEnter",(void*)_bbDebugEnter );
+	rtSym( "_bbDebugLeave",(void*)_bbDebugLeave );
 
 	basic_link( rtSym );
 	math_link( rtSym );
@@ -244,12 +244,14 @@ bool bbruntime_destroy(){
 	return true;
 }
 
+
 const char *bbruntime_run( gxRuntime *rt,void (*pc)(),bool dbg ){
 	debug=dbg;
 	gx_runtime=rt;
 
 	if( !bbruntime_create() ) return "Unable to start program";
 	const char *t=0;
+#ifdef HAVE_EXCEPTIONS
 	try{
 		if( !gx_runtime->idle() ) RTEX( 0 );
 		pc();
@@ -257,9 +259,15 @@ const char *bbruntime_run( gxRuntime *rt,void (*pc)(),bool dbg ){
 	}catch( bbEx x ){
 		t=x.err;
 	}
+#else
+		if( !gx_runtime->idle() ) exit( 0 );
+		pc();
+		gx_runtime->debugInfo( "Program has ended" );
+#endif
 	bbruntime_destroy();
 	return t;
 }
+
 
 void bbruntime_panic( const char *err ){
 	RTEX( err );
