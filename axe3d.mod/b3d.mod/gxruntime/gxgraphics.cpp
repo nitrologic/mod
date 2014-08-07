@@ -154,6 +154,8 @@ int gxGraphics::getAvailVidmem()const{
 	return caps.dwVidMemFree;
 }
 
+#ifdef HAS_MOVIES
+
 gxMovie *gxGraphics::openMovie( const string &file,int flags ){
 
 	IAMMultiMediaStream *iam_stream;
@@ -184,6 +186,7 @@ gxMovie *gxGraphics::openMovie( const string &file,int flags ){
 	}
 	return 0;
 }
+#endif
 
 gxMovie *gxGraphics::verifyMovie( gxMovie *m ){
 	return movie_set.count( m ) ? m : 0;
