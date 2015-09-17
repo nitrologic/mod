@@ -152,7 +152,7 @@ Type TPixmapLoaderILBM Extends TPixmapLoader
 					stream.SkipBytes(dud-20)							' extended chunk compatibility
 				Case	"CMAP"	' ColorMap
 							dud			= stream.ReadInt()				' length of ColourMap chunk
-					If Not ColourMapRed
+					If True'Not ColourMapRed
 						cmap		= dud/3
 						ColourMapRed	= ColourMapRed[..cmap+1]
 						ColourMapGreen	= ColourMapGreen[..cmap+1]
@@ -174,11 +174,13 @@ Type TPixmapLoaderILBM Extends TPixmapLoader
 					Local	buffer%[17]
 							pixmap			= TPixmap.Create(w,h,PF_RGB888)
 											
-'					If 2^nPlanes>cmap
-'						ColourMapRed=ColourMapRed[..(2^nPlanes)+1]
-'						ColourMapGreen=ColourMapGreen[..(2^nPlanes)+1]
-'						ColourMapBlue=ColourMapBlue[..(2^nPlanes)+1]
-'					EndIf	' 2^nPlanes>cmap
+					If 2^nPlanes>cmap
+						ColourMapRed=ColourMapRed[..(2^nPlanes)+1]
+						ColourMapGreen=ColourMapGreen[..(2^nPlanes)+1]
+						ColourMapBlue=ColourMapBlue[..(2^nPlanes)+1]
+					EndIf	' 2^nPlanes>cmap
+
+DebugLog nPlanes+"  "+cmap
 
 					For Local column%=1 To h
 						row			= New Int[w+17]
@@ -260,11 +262,6 @@ Type TPixmapLoaderILBM Extends TPixmapLoader
 			If pixmap Then Exit
 		Wend	' Not stream.EOF()
 		
-		If Not pixmap 
-			DebugLog "IFF Failed Loaded pixmap"
-		Else
-			DebugLog "IFF Loaded pixmap"
-		EndIf
 		Return pixmap
 	End Method
 
